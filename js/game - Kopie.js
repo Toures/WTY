@@ -8,7 +8,7 @@ function meteorstorm(){
     var percent = (1.0/100.0);
     var game = new Phaser.Game(WIDTH, HEIGHT, Phaser.AUTO, '',{preload:preload, create:create, update:update});
 	
-	var ship, music, crash, text, keys;
+	var keys;
     var SPEED = 0.2;
     meteors = [];
 
