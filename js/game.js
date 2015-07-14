@@ -56,7 +56,7 @@ function dogtoaster(){
         geoLines.push(new Phaser.Line(x1, y1, x2, y2));
     }
 
-    function createLaser(x, y, dir) {
+    function castLaser(x, y, dir) {
         var xTo = 0, yTo = 0;
         switch (dir) {
             case "oben":
