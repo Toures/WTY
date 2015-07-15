@@ -1,5 +1,5 @@
 /**
- * Created by Thea on 14.07.15.
+ * Created by Ping on 14.07.15.
  */
 
 //game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -129,21 +129,6 @@ function Hindernis(spr, bewegbar){
             this.spr.y+=feldlaenge;
         }
     }
-}
-
-
-var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'Spiegel', { preload: preload, create: create,
-    update: update, render: render });
-
-function preload() {
-
-    game.load.spritesheet('button', 'assets/spaceship.png', 193, 71);
-
-    game.load.image('hintergrund','assets/crappyStarfield.png');
-    game.load.image('spiegel1','assets/spaceship.png');
-    game.load.image('buttonLinks','assets/meteor.png');
-    game.load.image('buttonRechts','assets/meteor.png');
-
 }
 
 var background;
