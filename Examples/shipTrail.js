@@ -43,8 +43,7 @@ function create() {
     sprite.body.collideWorldBounds = true;
     sprite.body.bounce.set(0.8);
 
-    launch();
-
+    sprite.body.velocity.setTo(500, 0);
     game.input.onDown.add(starteGraphicsNeu, this);
 
 }
@@ -55,10 +54,6 @@ function starteGraphicsNeu(){
     graphics.beginFill(0x00FF00,1);
     //lineStyle(lineWidth, color, alpha);
     graphics.lineStyle(1, 0x0000FF, 1);
-}
-
-function launch() {
-    sprite.body.velocity.setTo(100, 0);
 }
 
 function update() {
@@ -80,7 +75,6 @@ function update() {
 }
 function colised(s1,s2){
     s2.body.velocity.setTo(0,100);
-    var background = game.add.sprite(0,0,'background');
 }
 function colised2(s1,s2){
     s2.body.velocity.setTo(-100,0);

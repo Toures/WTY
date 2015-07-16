@@ -4,235 +4,95 @@
 
 //game.physics.startSystem(Phaser.Physics.ARCADE);
 
-var feldlaenge = 64;
-
-function Ursprung(spr){
-    this.spr = spr;
-    game.physics.enable(this.spr, Phaser.Physics.ARCADE);
-    this.spr.body.immovable = true;
-    //sprite.body.checkCollision.up = true;
+function erzeugeToast(){
+    toast = game.add.sprite(600,200,'toast');
+    game.physics.enable(toast, Phaser.Physics.ARCADE);
+    toast.body.immovable = true;;
+    toast.anchor.set(0.5);
+    toast.scale.set(0.06);
+    toast.alpha = 0;
 }
 
-function Spiegel(spr, drehbar, bewegbar){
-    this.spr = spr;
-    game.physics.enable(this.spr, Phaser.Physics.ARCADE);
-    this.spr.body.collideWorldBounds = true;
-    this.spr.anchor.setTo(0.5, 0.5);
-    this.drehbar = drehbar;
-
-    if(!bewegbar){
-        this.spr.body.immovable = true;
-    }
-    this.dreheUhrzeigesinn = function(){
-        if(this.drehbar){
-            this.spr.angle += 90;
-        }
-    }
-    this.dreheGegenUhrzeigesinn = function(){
-        if(this.drehbar){
-            this.spr.angle -= 90;
-        }
-    }
-
-    var duzs = this.dreheUhrzeigesinn;
-    var dguzs = this.dreheGegenUhrzeigesinn;
-
-
-
-    this.buttonRechts = game.add.button(spr.x+feldlaenge,spr.y, 'buttonRechts', duzs,this);
-    this.buttonLinks = game.add.button(spr.x-feldlaenge,spr.y,'buttonLinks',dguzs,this);
-
-    this.buttonLinks.scale.setTo(0.5,0.5);
-    this.buttonRechts.scale.setTo(0.5,0.5);
-    this.buttonLinks.anchor.setTo(0.5,0.5);
-    this.buttonRechts.anchor.setTo(0.5,0.5);
-
-    this.zeigeButtons = function(){
-        this.buttonRechts.x = this.spr.x+feldlaenge;
-        this.buttonLinks.x = this.spr.x-feldlaenge;
-        this.buttonRechts.y = this.spr.y;
-        this.buttonLinks.y = this.spr.y;
-        this.buttonRechts.visible = true;
-        this.buttonLinks.visible = true;
-    }
-
-    this.versteckeButtons = function(){
-        this.buttonRechts.visible = false;
-        this.buttonLinks.visible = false;
-    }
-
-    this.bewegeNachLinks = function(){
-        if(bewegbar){
-            this.spr.body.velocity.x = 0-feldlaenge;
-        }
-    }
-    this.bewegeNachRechts = function(){
-        if(bewegbar){
-            this.spr.body.velocity.x = feldlaenge;
-        }
-    }
-    this.bewegeNachOben = function(){
-        if(bewegbar){
-            this.spr.body.velocity.y = 0-feldlaenge;
-        }
-    }
-    this.bewegeNachUnten = function(){
-        if(bewegbar){
-            this.spr.body.velocity.y = feldlaenge;
-        }
-    }
-    this.keineBewegung = function(){
-        if(bewegbar){
-            this.spr.body.velocity.x = 0;
-            this.spr.body.velocity.y = 0;
-        }
-    }
-    this.versteckeButtons();
+function erzeugeKristall(){
+    kristall = game.add.sprite(300,200,'kristall');
+    game.physics.enable(kristall, Phaser.Physics.ARCADE);
+    kristall.body.immovable = true;
+    kristall.anchor.set(0.5);
+    kristall.scale.set(0.5);
 }
 
-function Toast(spr){
-    this.spr = spr;
-    game.physics.enable(this.spr, Phaser.Physics.ARCADE);
-    this.spr.body.immovable = true;
+function erzeugeUrsprung(){
+    ursprung = game.add.sprite(100,80,'ursprung');
+    game.physics.enable(ursprung, Phaser.Physics.ARCADE);
+    ursprung.body.immovable = true;
+    ursprung.anchor.set(0.5);
+    ursprung.scale.set(0.1);
 }
 
-function Kristall(spr){
-    this.spr = spr;
-    game.physics.enable(this.spr, Phaser.Physics.ARCADE);
-    this.spr.body.immovable = true;
+function erzeugeLaserZeichner(){
+    laserZeichner = game.add.sprite(ursprung.x,ursprung.y,'ursprung');
+    game.physics.enable(laserZeichner, Phaser.Physics.ARCADE);
+    laserZeichner.scale.set(0.0005);
+    laserZeichner.anchor.set(0.5);
+    //laserZeichner.body.bounce.set(1.6);
+    laserZeichner.body.velocity.setTo(0, laserVelocity);
 }
 
-function Hindernis(spr, bewegbar){
-    this.spr = spr;
-    game.physics.enable(this.spr, Phaser.Physics.ARCADE);
-    this.spr.body.collideWorldBounds = true;
-    if(!bewegbar){
-        this.spr.body.immovable = true;
-    }
-    this.bewegeNachLinks = function(){
-        if(bewegbar){
-            this.spr.x-=feldlaenge;
-        }
-    }
-    this.bewegeNachRechts = function(){
-        if(bewegbar){
-            this.spr.x+=feldlaenge;
-        }
-    }
-    this.bewegeNachOben = function(){
-        if(bewegbar){
-            this.spr.y-=feldlaenge;
-        }
-    }
-    this.bewegeNachUnten = function(){
-        if(bewegbar){
-            this.spr.y+=feldlaenge;
-        }
-    }
+function starteGraphicsNeu(){
+    graphics.clear();
+    //beginFill(color, alpha)
+    graphics.beginFill(0x00FF00,1);
+    //lineStyle(lineWidth, color, alpha);
+    graphics.lineStyle(1, 0x0000FF, 1);
+    laserZeichner.x = ursprung.x;
+    laserZeichner.y = ursprung.y;
+    laserZeichner.body.velocity.setTo(0, 50);
 }
 
-var background;
-var spiegel1;
-var spiegel2;
-var cursors;
-var richtungBewegung;
-var numKollision = 0;
-var numAktuellesSpiegel = 0;
-var spiegelObjekte =[];
-var spiegel = [];
+function erzeugeHund(){
+    dog =  game.add.sprite(500,500,'hund');
+    game.physics.enable(dog, Phaser.Physics.ARCADE);
+    dog.body.collideWorldBounds = true;
+    dog.body.setSize(264,464);
+    dog.scale.set(0.1);
+    /*
+    dog.animations.add('left', [], 64, true);
+    dog.animations.add('right', [], 64, true);
+    dog.animations.add('up', [], 64, true);
+    dog.animations.add('down', [], 64, true);
+     */
+    dog.anchor.setTo(0.3,0.4);
 
-function create() {
+    game.camera.follow(dog);
+}
 
-    game.physics.startSystem(Phaser.Physics.ARCADE);
+function erzeugeSpiegel(){
+    spiegelSprs[0] = game.add.sprite(355,255,'spiegel');
+    spiegelSprs[1] = game.add.sprite(159,37,'spiegel');
+    spiegelSprs[2] = game.add.sprite(100,200,'spiegel');
+    spiegelSprs[3] = game.add.sprite(530,398,'spiegel');
 
-    background = game.add.sprite(0, 0, 'hintergrund');
-    background.name = 'background';
 
-    var sp1 = game.add.sprite(300,264,'spiegel1');
-    sp1.angle = -135;
-    spiegel1 = new Spiegel(sp1,true,true);
-
-    var sp2 = game.add.sprite(300,200,'spiegel1');
-    sp2.angle = -135;
-    spiegel2 = new Spiegel(sp2,true,true);
-
-    spiegelObjekte[0] = sp1;
-    spiegelObjekte[1] = sp2;
-    spiegel[0] = spiegel1;
-    spiegel[1] = spiegel2;
-
-    cursors = game.input.keyboard.createCursorKeys();
+    for(i in spiegelSprs){
+        spiegelSprs[i].scale.set(0.2);
+        spiegelSprs[i].anchor.set(0.5);
+        if(i == 0)
+            spiegel[i] = new Spiegel(spiegelSprs[i],true, true);
+        else
+            spiegel[i] = new Spiegel(spiegelSprs[i],true, false);
+    }
 
 }
 
-function update(){
-    spiegel2.spr.inputEnabled = true;
-    spiegel2.spr.input.enableDrag();
-    spiegel2.spr.input.enableSnap(64,64,true,true);
-    spiegel2.keineBewegung();
-    //spiegel1.keineBewegung();
-    spiegel1.spr.body.velocity.y = 0;
-    spiegel1.spr.body.velocity.x = 0;
-    if(cursors.up.isDown){
-        spiegel2.bewegeNachOben();
-        richtungBewegung ='oben';
-        spiegel[numAktuellesSpiegel].versteckeButtons();
+function erzeugeHindernis(){
+    hindernis[2] = game.add.sprite(100,50,'hindernis');
+    hindernis[1] = game.add.sprite(455,200,'hindernis');
+    hindernis[0] = game.add.sprite(411,3,'hindernis');
+
+    for(i in hindernis){
+        hindernis[i].scale.set(0.1);
+        hindernis[i].anchor.set(0.5);
+        game.physics.enable(hindernis[i], Phaser.Physics.ARCADE);
+        hindernis[i].body.collideWorldBounds = true;
     }
-
-    if(cursors.down.isDown){
-        //spiegel2.bewegeNachUnten();
-        spiegel2.spr.body.y++;
-        richtungBewegung = 'unten';
-        spiegel[numAktuellesSpiegel].versteckeButtons();
-    }
-
-    if(cursors.left.isDown){
-        spiegel2.bewegeNachLinks();
-        richtungBewegung = 'links';
-        spiegel[numAktuellesSpiegel].versteckeButtons();
-    }
-
-    if(cursors.right.isDown){
-        spiegel2.bewegeNachRechts();
-        richtungBewegung = 'rechts';
-        spiegel[numAktuellesSpiegel].versteckeButtons();
-    }
-    game.physics.arcade.collide(spiegel1.spr, spiegel2.spr,schiebe);
-
-}
-
-function schiebe(sp1,sp2){
-    numAktuellesSpiegel = spiegelObjekte.indexOf(sp1)
-    console.log(spiegelObjekte.indexOf(sp1));
-    if(numKollision>0){
-        switch (richtungBewegung) {
-            case 'unten':
-                spiegel[numAktuellesSpiegel].bewegeNachUnten();
-                break;
-            case 'oben':
-                spiegel[numAktuellesSpiegel].bewegeNachOben();
-                break;
-            case 'links':
-                spiegel[numAktuellesSpiegel].bewegeNachLinks();
-                break;
-            case 'rechts':
-                spiegel[numAktuellesSpiegel].bewegeNachRechts();
-                break;
-            numKollision = 0;
-        }
-    }
-
-    spiegel[numAktuellesSpiegel].zeigeButtons();
-    numKollision++;
-}
-
-function updateCounter(){
-
-    //spiegel1.dreheUhrzeigesinn();
-
-}
-function render () {
-    game.debug.body(spiegel1.spr);
-    game.debug.body(spiegel2.spr);
-
 }
