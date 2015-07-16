@@ -56,7 +56,6 @@ function dogtoaster(){
             deleteLasers(geoLines[20]);
         }
         var line = castLaser(0,100,'rechts');
-        deleteLasers(line);
     }
 
     function addLaser(x1,y1,x2,y2) {

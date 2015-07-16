@@ -26,13 +26,30 @@ function hundHindernis(hund,hi){
 }
 
 function hundToast(h,t){
+    t.kill();
+    console.log(t.x);
+    // TODO Animation Toast
     game.add.tween(t).to( {alpha: 1 }, 2000, 'Linear', true);
-    toastGefunden = true;
-    game.add.tween(t).to( {scale: 0 }, 2000, 'Linear', true);
+    t.kill();
+    var verschwinde = function(t){
+        game.add.tween(t).to( {alpha: 0 }, 2000, 'Linear', true);
+    }
+    game.time.events.add(2000,verschwinde,this,t);
+    var entferne = function(t){
+        t.kill();
+    }
+    game.time.events.add(4000,entferne,this,t);
+
+    zeichne = true;
+    startZeit = toastZeit+game.rnd.integerInRange(15,20);
+    timer = game.time.create(true);
+    timer.start();
     starteGraphicsNeu();
+
 }
 
 function laserSpiegel(lz,sp) {
+    if(zeichne){
     switch (sp.angle){// prüfe Spiegelrichtung
         case obenRechts:
             if(lz.body.velocity.x == 0 && lz.body.velocity.y > 0){// Laser strahlt nach unten
@@ -79,8 +96,9 @@ function laserSpiegel(lz,sp) {
             }
             break;
     }
+    }
     /*
-    if (toastGefunden) {
+    if (zeichne) {
         for (var i = lz.y; i < sp.y; i++) {
             graphics.drawRect(lz.x, i, linienDicke, linienDicke);
         }
@@ -97,9 +115,26 @@ function laserHindernis(lz, hindernis){
 
 function laserKristall(lz, kristall){
     lz.body.velocity.set(0);
+    //TODO Kristall Animation
     console.log('gewonnen');
-    //TODO popup
-    //prüfe, ob Toast gefunden wurde
-    //kill elemente
     //nächte level laden
+    if(level == 1){
+        entferneLevel();
+        ladeLevel2();
+        popupLevel2();
+        level++;
+    }else if(level == 2){
+        entferneLevel();
+        ladeLevel3();
+        popupLevel3();
+        level++;
+    }else if(level == 3){
+        entferneLevel();
+        ladeLevel4();
+        popupLevel4();
+        level++;
+    }else if(level == 4){
+        entferneLevel();
+        popupEnde();
+    }
 }

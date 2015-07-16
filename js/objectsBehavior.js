@@ -70,26 +70,49 @@ function controlDog() {
         //dog.play('up');
         console.log(numAktuellesSpiegel);
         spiegel[numAktuellesSpiegel].versteckeButtons();
-    }
-
-    else if(keys.down.isDown ) {
+    } else if(keys.down.isDown ) {
         dog.body.velocity.y = dogVelocity;
         //dog.play('down');
         spiegel[numAktuellesSpiegel].versteckeButtons();
-    }
-
-    else if(keys.left.isDown) {
+    } else if(keys.left.isDown) {
         dog.body.velocity.x = -dogVelocity;
         //dog.play('left');
         spiegel[numAktuellesSpiegel].versteckeButtons();
-    }
-
-    else if(keys.right.isDown ) {
+    } else if(keys.right.isDown ) {
         dog.body.velocity.x = dogVelocity;
         //dog.play('right');
         spiegel[numAktuellesSpiegel].versteckeButtons();
     }
-    else {
-        //player.animations.stop();
+}
+
+function starteGraphicsNeu(){
+    graphics.clear();
+    //beginFill(color, alpha)
+    graphics.beginFill(0xff0000,1);
+    //lineStyle(lineWidth, color, alpha);
+    graphics.lineStyle(1, 0xff0000, 6);
+    laserZeichner.x = ursprung.x;
+    laserZeichner.y = ursprung.y;
+    laserZeichner.body.velocity.setTo(laserUrsprungVelocityX, laserUrsprungVelocityY);
+}
+
+function zeichneLaser(){
+    if(laserZeichner.x<0||laserZeichner.y<0||laserZeichner.x>game.world.width||laserZeichner.y>game.world.height){
+        laserZeichner.body.velocity.setTo(0,0);
+    }
+    if((laserZeichner.body.velocity.x!=0||laserZeichner.body.velocity.y!=0)&&zeichne){
+        graphics.drawRect(laserZeichner.x, laserZeichner.y, linienDicke, linienDicke);
+    }
+}
+
+function stoppeElemente(){
+    dog.body.velocity.set(0);
+    for(i in spiegelSprs){
+        if(!spiegelSprs[i].body.immovable)
+            spiegelSprs[i].body.velocity.set(0);
+    }
+    for(i in hindernis){
+        if(!hindernis[i].body.immovable)
+            hindernis[i].body.velocity.set(0);
     }
 }
