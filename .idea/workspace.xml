@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7078043c-b35c-410b-b1c5-29b64f22073b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/objectsBehavior.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/hund.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/js/colisionHandling.js" afterPath="$PROJECT_DIR$/Examples/colisionHandlingExample.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/js/game - Kopie.js" afterPath="$PROJECT_DIR$/Examples/game - Kopie.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/js/game.js" afterPath="$PROJECT_DIR$/Examples/game.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/js/popup.js" afterPath="$PROJECT_DIR$/Examples/popupExample.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/js/shipTrail.js" afterPath="$PROJECT_DIR$/Examples/shipTrail.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/buttonLinks.png" afterPath="$PROJECT_DIR$/assets/buttonLinks.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/buttonRechts.png" afterPath="$PROJECT_DIR$/assets/buttonRechts.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/hindernis.png" afterPath="$PROJECT_DIR$/assets/hindernis.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/hund.png" afterPath="$PROJECT_DIR$/assets/hund.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/kristall.png" afterPath="$PROJECT_DIR$/assets/kristall.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/spiegel.png" afterPath="$PROJECT_DIR$/assets/spiegel.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/toast.png" afterPath="$PROJECT_DIR$/assets/toast.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/ursprung.png" afterPath="$PROJECT_DIR$/assets/ursprung.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/colisionHandling.js" afterPath="$PROJECT_DIR$/js/colisionHandling.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/objectsBehavior.js" afterPath="$PROJECT_DIR$/js/objectsBehavior.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/ping.js" afterPath="$PROJECT_DIR$/js/ping.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/start.js" afterPath="$PROJECT_DIR$/js/start.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -43,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ping.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ping.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/ping.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2238806">
-              <caret line="59" column="46" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="71" column="56" selection-start-line="71" selection-start-column="56" selection-end-line="71" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -57,17 +42,17 @@
         <entry file="file://$PROJECT_DIR$/js/objectsBehavior.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+              <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="colisionHandling.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="colisionHandling.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/colisionHandling.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
+            <state vertical-scroll-proportion="-1.2510519">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -87,7 +72,7 @@
         <entry file="file://$PROJECT_DIR$/js/start.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+              <caret line="108" column="6" selection-start-line="108" selection-start-column="6" selection-end-line="108" selection-end-column="6" />
               <folding>
                 <element signature="e#0#39#0" expanded="false" />
               </folding>
@@ -120,8 +105,8 @@
         <option value="$PROJECT_DIR$/js/shipTrail.js" />
         <option value="$PROJECT_DIR$/js/colisionHandlingExample.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/objectsBehavior.js" />
         <option value="$PROJECT_DIR$/js/ping.js" />
+        <option value="$PROJECT_DIR$/js/objectsBehavior.js" />
         <option value="$PROJECT_DIR$/js/start.js" />
         <option value="$PROJECT_DIR$/js/colisionHandling.js" />
       </list>
@@ -314,7 +299,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26067746" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -424,10 +409,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/ping.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="71" column="56" selection-start-line="71" selection-start-column="56" selection-end-line="71" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/start.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+          <caret line="108" column="6" selection-start-line="108" selection-start-column="6" selection-end-line="108" selection-end-column="6" />
           <folding>
             <element signature="e#0#39#0" expanded="false" />
           </folding>
@@ -437,23 +430,15 @@
     <entry file="file://$PROJECT_DIR$/js/objectsBehavior.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/colisionHandling.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/ping.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2238806">
-          <caret line="59" column="46" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
+        <state vertical-scroll-proportion="-1.2510519">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>

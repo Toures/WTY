@@ -2,9 +2,13 @@
  * Created by Ping on 15.07.15.
  */
 
-var bewegungrichtungLaser;
 var numAktuellesSpiegel = 0;
 var numAktuellesHindernis = 0;
+
+var obenRechts = 90;
+var rechtUnten = -180;
+var untenLinks = -90;
+var linksOben = 0;
 
 function hundSpiegel(hund,sp){
     numAktuellesSpiegel = spiegelSprs.indexOf(sp);
@@ -21,15 +25,60 @@ function hundHindernis(hund,hi){
     }
 }
 
-function hundToast(){
-    game.add.tween(toast).to( {alpha: 1 }, 2000, 'Linear', true);
+function hundToast(h,t){
+    game.add.tween(t).to( {alpha: 1 }, 2000, 'Linear', true);
     toastGefunden = true;
+    game.add.tween(t).to( {scale: 0 }, 2000, 'Linear', true);
     starteGraphicsNeu();
 }
 
 function laserSpiegel(lz,sp) {
-    //TODO Fallunterscheidung
-    lz.body.velocity.setTo(laserVelocity, 0);
+    switch (sp.angle){// prüfe Spiegelrichtung
+        case obenRechts:
+            if(lz.body.velocity.x == 0 && lz.body.velocity.y > 0){// Laser strahlt nach unten
+                lz.body.velocity.setTo(laserVelocity, 0); // strahl nach rechts weiter
+            }else if(lz.body.velocity.x < 0 && lz.body.velocity.y == 0){// Laser strahl nach links
+                lz.body.velocity.setTo(0, 0-laserVelocity); // strahl nach oben weiter
+            }else if(lz.body.velocity.x == 0 && lz.body.velocity.y < 0){// Laser strahl nach oben
+                lz.body.velocity.set(0); // stoppe
+            }else if(lz.body.velocity.x > 0 && lz.body.velocity.y == 0){ // Laser strahl nach rechts
+                lz.body.velocity.set(0); // stoppe
+            }
+            break;
+        case rechtUnten:
+            if(lz.body.velocity.x == 0 && lz.body.velocity.y > 0){
+                lz.body.velocity.set(0);
+            }else if(lz.body.velocity.x < 0 && lz.body.velocity.y == 0){
+                lz.body.velocity.setTo(0, laserVelocity);
+            }else if(lz.body.velocity.x == 0 && lz.body.velocity.y < 0){
+                lz.body.velocity.setTo(laserVelocity, 0);
+            }else if(lz.body.velocity.x > 0 && lz.body.velocity.y == 0){
+                lz.body.velocity.set(0);
+            }
+            break;
+        case untenLinks:
+            if(lz.body.velocity.x == 0 && lz.body.velocity.y > 0){
+                lz.body.velocity.set(0);
+            }else if(lz.body.velocity.x < 0 && lz.body.velocity.y == 0){
+                lz.body.velocity.set(0);
+            }else if(lz.body.velocity.x == 0 && lz.body.velocity.y < 0){
+                lz.body.velocity.setTo(0-laserVelocity, 0);
+            }else if(lz.body.velocity.x > 0 && lz.body.velocity.y == 0){
+                lz.body.velocity.setTo(0, laserVelocity);
+            }
+            break;
+        case linksOben:
+            if(lz.body.velocity.x == 0 && lz.body.velocity.y > 0){
+                lz.body.velocity.setTo(0-laserVelocity, 0);
+            }else if(lz.body.velocity.x < 0 && lz.body.velocity.y == 0){
+                lz.body.velocity.set(0);
+            }else if(lz.body.velocity.x == 0 && lz.body.velocity.y < 0){
+                lz.body.velocity.set(0);
+            }else if(lz.body.velocity.x > 0 && lz.body.velocity.y == 0){
+                lz.body.velocity.setTo(0, 0-laserVelocity);
+            }
+            break;
+    }
     /*
     if (toastGefunden) {
         for (var i = lz.y; i < sp.y; i++) {
@@ -54,4 +103,3 @@ function laserKristall(lz, kristall){
     //kill elemente
     //nächte level laden
 }
-

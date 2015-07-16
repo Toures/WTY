@@ -16,6 +16,7 @@ function Spiegel(spr, drehbar, bewegbar){
         if(this.drehbar){
             this.spr.angle += 90;
         }
+        console.log(this.spr.angle);
         starteGraphicsNeu();
     }
     this.dreheGegenUhrzeigesinn = function(){

@@ -17,8 +17,9 @@ function erzeugeKristall(){
     kristall = game.add.sprite(300,200,'kristall');
     game.physics.enable(kristall, Phaser.Physics.ARCADE);
     kristall.body.immovable = true;
-    kristall.anchor.set(0.5);
+    kristall.anchor.set(0.45);
     kristall.scale.set(0.5);
+    kristall.body.setSize(60,100);
 }
 
 function erzeugeUrsprung(){
@@ -68,7 +69,7 @@ function erzeugeHund(){
 
 function erzeugeSpiegel(){
     spiegelSprs[0] = game.add.sprite(355,255,'spiegel');
-    spiegelSprs[1] = game.add.sprite(159,37,'spiegel');
+    spiegelSprs[1] = game.add.sprite(550,200,'spiegel');
     spiegelSprs[2] = game.add.sprite(100,200,'spiegel');
     spiegelSprs[3] = game.add.sprite(530,398,'spiegel');
 
@@ -79,15 +80,15 @@ function erzeugeSpiegel(){
         if(i == 0)
             spiegel[i] = new Spiegel(spiegelSprs[i],true, true);
         else
-            spiegel[i] = new Spiegel(spiegelSprs[i],true, false);
+            spiegel[i] = new Spiegel(spiegelSprs[i],true, true);
     }
 
 }
 
 function erzeugeHindernis(){
-    hindernis[2] = game.add.sprite(100,50,'hindernis');
+    hindernis[2] = game.add.sprite(500,330,'hindernis');
     hindernis[1] = game.add.sprite(455,200,'hindernis');
-    hindernis[0] = game.add.sprite(411,3,'hindernis');
+    hindernis[0] = game.add.sprite(700,400,'hindernis');
 
     for(i in hindernis){
         hindernis[i].scale.set(0.1);

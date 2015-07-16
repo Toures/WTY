@@ -71,7 +71,8 @@ function update(){
     //zeichne Laser
     if(laserZeichner.x<0||laserZeichner.y<0||laserZeichner.x>game.world.width||laserZeichner.y>game.world.height){
         laserZeichner.body.velocity.setTo(0,0);
-    }else if((laserZeichner.body.velocity.x!=0||laserZeichner.body.velocity.y!=0)&&toastGefunden){
+    }
+    if((laserZeichner.body.velocity.x!=0||laserZeichner.body.velocity.y!=0)&&toastGefunden){
         graphics.drawRect(laserZeichner.x, laserZeichner.y, linienDicke, linienDicke);
     }
 
@@ -94,6 +95,13 @@ function update(){
     game.physics.arcade.collide(laserZeichner, hindernis, laserHindernis);
     game.physics.arcade.collide(laserZeichner, spiegelSprs, laserSpiegel);
     game.physics.arcade.collide(laserZeichner, kristall, laserKristall);
+    game.physics.arcade.collide(spiegelSprs,hindernis);
+    game.physics.arcade.collide(spiegelSprs, kristall);
+    game.physics.arcade.collide(spiegelSprs, ursprung);
+    game.physics.arcade.collide(hindernis, kristall);
+    game.physics.arcade.collide(hindernis, ursprung);
+
+
 }
 
 function render(){
