@@ -69,6 +69,7 @@ function dogtoaster(){
                 geoLines[geoLines.length-1].end.x-tilesize,
                 geoLines[geoLines.length-1].end.y);
         }
+<<<<<<< HEAD:js/game.js
         if (keys.right.isDown && geoLines[0]) {
             addLaser(geoLines[geoLines.length-1].end.x,
                 geoLines[geoLines.length-1].end.y,
@@ -79,6 +80,10 @@ function dogtoaster(){
         //if (game.rnd.integerInRange(0,30) === 0 && geoLines.length > 30) {
           //  deleteLasers(geoLines[20]);
         //}
+=======
+        var line = castLaser(0,100,'rechts');
+        deleteLasers(line);
+>>>>>>> Ping:Examples/game.js
     }
 
     function addLaser(x1,y1,x2,y2) {
@@ -158,8 +163,8 @@ function dogtoaster(){
         geoLines.splice(geoLines.indexOf(laser),geoLines.length-geoLines.indexOf(laser));
     }
 
-    //Bei uebergabe der Level wird ein Levelobjekt zurückgegeben mit allen Informationen über das Level
-    //In default ist eine Vorlage für ein Level, kopiert diese einfach in die verschiedenen cases für
+    //Bei uebergabe der Level wird ein Levelobjekt zurï¿½ckgegeben mit allen Informationen ï¿½ber das Level
+    //In default ist eine Vorlage fï¿½r ein Level, kopiert diese einfach in die verschiedenen cases fï¿½r
     //die verschiedenen Level.
     function levelData(levelNumber){
         var level;
@@ -182,8 +187,8 @@ function dogtoaster(){
                         //Spielobjekte erschaffen
                     },
                     postInit: function() {
-                        //Hier können nachdem das Level initialisiert wurde weitere Einstellungen
-                        //vorgenommen werden, z.b. spawnrate der Zeitpacks(Batterien) geändert werden
+                        //Hier kï¿½nnen nachdem das Level initialisiert wurde weitere Einstellungen
+                        //vorgenommen werden, z.b. spawnrate der Zeitpacks(Batterien) geï¿½ndert werden
                     }
                 }
         }
