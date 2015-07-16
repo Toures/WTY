@@ -13,7 +13,8 @@ function dogtoaster(){
     //Laserobjekte
     var graLines;
     var geoLines = [];
-    var objects = [];//Alle Spielobjekte welche mit den Lasern interagieren
+    var objects = [];//Alle Spielobjekte welche mit den Lasern
+    var blaster;
 
     function preload(){
         keys = {
@@ -27,9 +28,9 @@ function dogtoaster(){
 
     function create(){
         graLines = game.add.graphics(0,0);
-        graLines.lineStyle(3,0xff0000,1);
-        addLaser(300,300,400,300);
-        castLaser(400,300,"oben");
+
+        blaster = laserBlaster(200,200,"rechts");
+        //castLaser(400,300,"oben");
 
         time = 11;
         timer = game.add.text(20,20,time+"", {font: '15px Arial', fill:'#ffffff', align: 'center'});
@@ -38,23 +39,46 @@ function dogtoaster(){
     function update() {
         dt = game.time.elapsed;
         //Countdown, wenn abgelaufen -> GameOver bzw. Neustart des Levels
-        time -= dt/1000;
-        timer.text = Phaser.Math.truncate(time)+"";
+
         if(Phaser.Math.truncate(time) <= 0) {
             gameOver();
         }
+        else {
+            time -= dt/1000;
+            timer.text = Phaser.Math.truncate(time)+"";
+        }
 
-        if (keys.up.isDown) {
-            console.log(geoLines.length + "");
+        if(blaster)
+            blaster.update(dt);
+
+        if (keys.up.isDown && geoLines[0]) {
             addLaser(geoLines[geoLines.length-1].end.x,
                 geoLines[geoLines.length-1].end.y,
-                geoLines[geoLines.length-1].end.x+game.rnd.integerInRange(-10,10),
-                geoLines[geoLines.length-1].end.y+game.rnd.integerInRange(-10,10));
+                geoLines[geoLines.length-1].end.x,
+                geoLines[geoLines.length-1].end.y-tilesize);
+        }
+        if (keys.down.isDown && geoLines[0]) {
+            addLaser(geoLines[geoLines.length-1].end.x,
+                geoLines[geoLines.length-1].end.y,
+                geoLines[geoLines.length-1].end.x,
+                geoLines[geoLines.length-1].end.y+tilesize);
+        }
+        if (keys.left.isDown && geoLines[0]) {
+            addLaser(geoLines[geoLines.length-1].end.x,
+                geoLines[geoLines.length-1].end.y,
+                geoLines[geoLines.length-1].end.x-tilesize,
+                geoLines[geoLines.length-1].end.y);
+        }
+        if (keys.right.isDown && geoLines[0]) {
+            addLaser(geoLines[geoLines.length-1].end.x,
+                geoLines[geoLines.length-1].end.y,
+                geoLines[geoLines.length-1].end.x+tilesize,
+                geoLines[geoLines.length-1].end.y);
         }
 
-        if (game.rnd.integerInRange(0,30) === 0 && geoLines.length > 30) {
-            deleteLasers(geoLines[20]);
-        }
+        //if (game.rnd.integerInRange(0,30) === 0 && geoLines.length > 30) {
+          //  deleteLasers(geoLines[20]);
+        //}
     }
 
     function addLaser(x1,y1,x2,y2) {
@@ -63,14 +87,16 @@ function dogtoaster(){
         child.moveTo(x1,y1);
         child.lineTo(x2,y2);
         graLines.addChild(child);
-        geoLines.push(new Phaser.Line(x1, y1, x2, y2));
+        var line = new Phaser.Line(x1, y1, x2, y2);
+        geoLines.push(line);
+        return line;
     }
 
     function castLaser(x, y, dir) {
         var xTo = 0, yTo = 0;
         switch (dir) {
             case "oben":
-                for (; inside(y + yTo, 0, HEIGHT); yTo -= tilesize) {
+                for (; inside(y + yTo, 0, HEIGHT); yTo -= (tilesize/2) {
                     console.log(yTo+"");
                     for (var i in objects) {
                         if (Phaser.Math.within(objects[i].sprite.x,x+xTo,10) && Phaser.Math.within(objects[i].sprite.y,y+yTo,10)) {
@@ -81,7 +107,7 @@ function dogtoaster(){
                 }
                 break;
             case "unten":
-                for (; inside(y + yTo, 0, HEIGHT); yTo += tilesize) {
+                for (; inside(y + yTo, 0, HEIGHT); yTo += (tilesize/2)) {
                     for (var i in objects) {
                         if (Phaser.Math.within(objects[i].sprite.x,x+xTo,10) && Phaser.Math.within(objects[i].sprite.y,y+yTo,10)) {
                             objects[i].laserHit(dir);
@@ -91,7 +117,7 @@ function dogtoaster(){
                 }
                 break;
             case "links":
-                for (; inside(x + xTo, 0, WIDTH); xTo -= tilesize) {
+                for (; inside(x + xTo, 0, WIDTH); xTo -= (tilesize/2)) {
                     for (var i in objects) {
                         if (Phaser.Math.within(objects[i].sprite.x,x+xTo,10) && Phaser.Math.within(objects[i].sprite.y,y+yTo,10)) {
                             objects[i].laserHit(dir);
@@ -101,7 +127,7 @@ function dogtoaster(){
                 }
                 break;
             case "rechts":
-                for (; inside(x + xTo, 0, WIDTH); xTo += tilesize) {
+                for (; inside(x + xTo, 0, WIDTH); xTo += (tilesize/2)) {
                     for (var i in objects) {
                         if (Phaser.Math.within(objects[i].sprite.x,x+xTo,10) && Phaser.Math.within(objects[i].sprite.y,y+yTo,10)) {
                             objects[i].laserHit(dir);
@@ -120,13 +146,15 @@ function dogtoaster(){
         child.moveTo(x,y);
         child.lineTo(x+xTo,y+yTo);
         graLines.addChild(child);
-        geoLines.push(new Phaser.Line(x, y, x + xTo, y + yTo));
+        var line = new Phaser.Line(x, y, x + xTo, y + yTo);
+        geoLines.push(line);
+        return line;
     }
 
     //Entfernt alle Laserobjekte ab einem bestimmten Laserobjekt (d.h. alle darauffolgende Laserobjekte)
     function deleteLasers(laser) {
         geoLines.indexOf(laser);
-        graLines.removeChildren(geoLines.indexOf(laser),geoLines.length);
+        graLines.children.splice(geoLines.indexOf(laser),graLines.children.length-geoLines.indexOf(laser));
         geoLines.splice(geoLines.indexOf(laser),geoLines.length-geoLines.indexOf(laser));
     }
 
@@ -163,11 +191,35 @@ function dogtoaster(){
         return level;
     }
 
+    //Erstellt einen neuen laserBlaster
+    function laserBlaster(x,y,dir) {
+        blaster = {
+            sprite: null, //TODO: sprite einfuegen
+            x: x,
+            y: y,
+            dir: dir,
+            power: true,
+            laser: addLaser(x,y,x+100,y),
+            update: function(dt) {
+                if(this.power) {
+                    if(!this.laser)
+                        this.laser = castLaser(this.x, this.y, this.dir);
+                }
+                else {
+                    if(this.laser)
+                        deleteLasers(this.laser);
+                }
+            }
+        };
+
+        return blaster;
+    }
+
     function inside(i, a, b) {
         return ((i >= a) && (i <= b));
     }
 
     function gameOver() {
-
+        deleteLasers(geoLines[0]);
     }
 }
