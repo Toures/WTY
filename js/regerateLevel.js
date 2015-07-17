@@ -4,13 +4,13 @@
 
 //game.physics.startSystem(Phaser.Physics.ARCADE);
 
-function setlaserUrsprung1(){
-    laserUrsprungVelocityX = 0;
-    laserUrsprungVelocityY = laserVelocity;
+function setlaserUrsprung(x, y){
+    laserUrsprungVelocityX = x;
+    laserUrsprungVelocityY = y;
 }
 
-function erzeugeKristall1(){
-    kristall = game.add.sprite(300,200,'kristall');
+function erzeugeKristall(x,y){
+    kristall = game.add.sprite(x,y,'kristall');
     game.physics.enable(kristall, Phaser.Physics.ARCADE);
     kristall.body.immovable = true;
     kristall.anchor.set(0.45);
@@ -19,7 +19,7 @@ function erzeugeKristall1(){
     kristall.play('strahlen');
 }
 
-function erzeugeUrsprung1(){
+function erzeugeUrsprung(x,y){
     ursprung = game.add.sprite(100,80,'ursprung');
     game.physics.enable(ursprung, Phaser.Physics.ARCADE);
     ursprung.body.immovable = true;
@@ -50,7 +50,7 @@ function erzeugeHund(){
     //game.camera.follow(dog);
 }
 
-function erzeugeSpiegel1(){
+function erzeugeSpiegel(s){
     spiegelSprs[0] = game.add.sprite(355,255,'spiegel');
     spiegelSprs[1] = game.add.sprite(550,200,'spiegel');
     spiegelSprs[2] = game.add.sprite(100,200,'spiegel');
@@ -58,18 +58,19 @@ function erzeugeSpiegel1(){
 
     spiegelSprs[2].angle += 90;
 
+
     for(i in spiegelSprs){
         spiegelSprs[i].scale.set(0.2);
         spiegelSprs[i].anchor.set(0.5);
-        if(i == 0)
-            spiegel[i] = new Spiegel(spiegelSprs[i],true, true);
+        if(i == 2)
+            spiegel[i] = new Spiegel(spiegelSprs[i],false, true);
         else
             spiegel[i] = new Spiegel(spiegelSprs[i],true, true);
     }
 
 }
 
-function erzeugeHindernis1(){
+function erzeugeHindernis(h){
     hindernis[2] = game.add.sprite(500,330,'hindernis');
     hindernis[1] = game.add.sprite(455,200,'hindernis');
     hindernis[0] = game.add.sprite(700,400,'hindernis');
@@ -81,7 +82,7 @@ function erzeugeHindernis1(){
     }
 }
 
-function erzeugeToast1(){
+function erzeugeToast(t){
     toast[0] = game.add.sprite(600,200,'toast');
     for(i in toast){
         game.physics.enable(toast[i], Phaser.Physics.ARCADE);

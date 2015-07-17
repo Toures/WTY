@@ -51,8 +51,7 @@ function preload(){
 
 function create(){
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    game.stage.setBackgroundColor(0xff00ff);
-    //hintergrund = game.add.sprite(0,0,'hintergrund');
+    hintergrund = game.add.sprite(0,0,'hintergrund');
     graphics = game.add.graphics(0, 0);
     game.world.bringToTop(graphics);
     ladeLevel1();
@@ -107,7 +106,6 @@ function update(){
     game.physics.arcade.collide(hindernis, kristall);
     game.physics.arcade.collide(hindernis, ursprung);
     }
-
 }
 
 function render() {

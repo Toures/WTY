@@ -12,6 +12,12 @@ function Spiegel(spr, drehbar, bewegbar){
     if(!bewegbar){
         this.spr.body.immovable = true;
     }
+    this.stoppe = function(){
+        if(bewegbar){
+            this.spr.body.velocity.set(0);
+        }
+    }
+
     this.dreheUhrzeigesinn = function(){
         if(this.drehbar){
             this.spr.angle += 90;
@@ -25,16 +31,9 @@ function Spiegel(spr, drehbar, bewegbar){
         }
         starteGraphicsNeu();
     }
-    this.stoppe = function(){
-        if(bewegbar){
-            this.spr.body.velocity.set(0);
-        }
-    }
-
+    if(drehbar){
     var duzs = this.dreheUhrzeigesinn;
     var dguzs = this.dreheGegenUhrzeigesinn;
-
-
 
     this.buttonRechts = game.add.button(spr.x+feldlaenge,spr.y, 'buttonRechts', duzs,this);
     this.buttonLinks = game.add.button(spr.x-feldlaenge,spr.y,'buttonLinks',dguzs,this);
@@ -61,6 +60,7 @@ function Spiegel(spr, drehbar, bewegbar){
     }
 
     this.versteckeButtons();
+    }
 }
 
 function controlDog() {
@@ -69,19 +69,27 @@ function controlDog() {
         dog.body.velocity.y  = -dogVelocity;
         dog.play('up');
         console.log(numAktuellesSpiegel);
-        spiegel[numAktuellesSpiegel].versteckeButtons();
+        if(spiegel[numAktuellesSpiegel].drehbar){
+            spiegel[numAktuellesSpiegel].versteckeButtons();
+        }
     } else if(keys.down.isDown ) {
         dog.body.velocity.y = dogVelocity;
         dog.play('down');
-        spiegel[numAktuellesSpiegel].versteckeButtons();
+        if(spiegel[numAktuellesSpiegel].drehbar){
+            spiegel[numAktuellesSpiegel].versteckeButtons();
+        }
     } else if(keys.left.isDown) {
         dog.body.velocity.x = -dogVelocity;
         dog.play('left');
-        spiegel[numAktuellesSpiegel].versteckeButtons();
+        if(spiegel[numAktuellesSpiegel].drehbar){
+            spiegel[numAktuellesSpiegel].versteckeButtons();
+        }
     } else if(keys.right.isDown ) {
         dog.body.velocity.x = dogVelocity;
         dog.play('right');
-        spiegel[numAktuellesSpiegel].versteckeButtons();
+        if(spiegel[numAktuellesSpiegel].drehbar){
+            spiegel[numAktuellesSpiegel].versteckeButtons();
+        }
     }
 }
 

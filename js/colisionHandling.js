@@ -3,7 +3,6 @@
  */
 
 var numAktuellesSpiegel = 0;
-var numAktuellesHindernis = 0;
 
 var obenRechts = 90;
 var rechtUnten = -180;
@@ -19,7 +18,9 @@ function hundSpiegel(hund,sp){
     if(!sp.body.immovable){
         starteGraphicsNeu();
     }
-    spiegel[numAktuellesSpiegel].zeigeButtons();
+    if(spiegel[numAktuellesSpiegel].drehbar) {
+        spiegel[numAktuellesSpiegel].zeigeButtons();
+    }
 }
 
 function hundHindernis(hund,hi){
@@ -27,7 +28,6 @@ function hundHindernis(hund,hi){
         checkHindernis = true;
         zeigeText(hindernisText);
     }
-    numAktuellesHindernis = hindernis.indexOf(hi);
     if(!hi.body.immovable){
         starteGraphicsNeu();
     }

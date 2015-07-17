@@ -4,45 +4,45 @@
 
 function ladeLevel1(){
     startZeit = 30;
-    setlaserUrsprung1();
-    erzeugeUrsprung1();
-    erzeugeKristall1();
-    erzeugeToast1();
-    erzeugeHindernis1();
-    erzeugeSpiegel1();
+    setlaserUrsprung(0,laserVelocity);
+    erzeugeUrsprung(100,80);
+    erzeugeKristall(300,200);
+    erzeugeToast();
+    erzeugeHindernis();
+    erzeugeSpiegel();
 }
 
 function ladeLevel2(){
     startZeit = 20;
     //TODO
-    setlaserUrsprung1();
-    erzeugeUrsprung1();
-    erzeugeKristall1();
-    erzeugeToast1();
-    erzeugeHindernis1();
-    erzeugeSpiegel1();
+    setlaserUrsprung(0,laserVelocity);
+    erzeugeUrsprung(100,80);
+    erzeugeKristall();
+    erzeugeToast();
+    erzeugeHindernis();
+    erzeugeSpiegel();
 }
 
 function ladeLevel3(){
     startZeit = 10;
     //TODO
-    setlaserUrsprung1();
-    erzeugeUrsprung1();
-    erzeugeKristall1();
-    erzeugeToast1();
-    erzeugeHindernis1();
-    erzeugeSpiegel1();
+    setlaserUrsprung(0,laserVelocity);
+    erzeugeUrsprung(100,80);
+    erzeugeKristall();
+    erzeugeToast();
+    erzeugeHindernis();
+    erzeugeSpiegel();
 }
 
 function ladeLevel4(){
     startZeit = 10;
     //TODO
-    setlaserUrsprung1();
-    erzeugeUrsprung1();
-    erzeugeKristall1();
-    erzeugeToast1();
-    erzeugeHindernis1();
-    erzeugeSpiegel1();
+    setlaserUrsprung(0,laserVelocity);
+    erzeugeUrsprung(100,80);
+    erzeugeKristall();
+    erzeugeToast();
+    erzeugeHindernis();
+    erzeugeSpiegel();
 }
 
 function entferneLevel(){
