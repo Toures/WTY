@@ -30,7 +30,7 @@ function stelleEin(){
 
 }
 
-function popupLevel1() {
+function popupStart() {
     popup = game.add.sprite(game.world.centerX, game.world.centerY, 'hintergrund');
     button = game.add.button(popup.x, popup.y+90, 'start',removePopup,this,2,1,0);
     buttonText = game.add.text(popup.x, popup.y+90,'Start',buttonTextstyle);
@@ -38,21 +38,7 @@ function popupLevel1() {
     stelleEin();
 }
 
-function popupLevel2(){
-    popup = game.add.sprite(game.world.centerX, game.world.centerY, 'hintergrund');
-    button = game.add.button(popup.x, popup.y+90, 'nextLevel',removePopup,this,2,1,0);
-    buttonText = game.add.text(popup.x, popup.y+90,'Next level',buttonTextstyle);
-    stelleEin();
-}
-
-function popupLevel3(){
-    popup = game.add.sprite(game.world.centerX, game.world.centerY, 'hintergrund');
-    button = game.add.button(popup.x, popup.y+90, 'nextLevel',removePopup,this,2,1,0);
-    buttonText = game.add.text(popup.x, popup.y+90,'Next level',buttonTextstyle);
-    stelleEin();
-}
-
-function popupLevel4(){
+function popupNext(){
     popup = game.add.sprite(game.world.centerX, game.world.centerY, 'hintergrund');
     button = game.add.button(popup.x, popup.y+90, 'nextLevel',removePopup,this,2,1,0);
     buttonText = game.add.text(popup.x, popup.y+90,'Next level',buttonTextstyle);
@@ -76,6 +62,24 @@ function removePopup(){
     button.kill();
     buttonText.kill();
     popupAktiv = false;
+
+    entferneLevel();
+    switch (level){
+        case 1:
+            ladeLevel1();
+            break;
+        case 2:
+            ladeLevel2();
+            break;
+        case 3:
+            ladeLevel3();
+            break;
+        case 4:
+            ladeLevel4();
+            break;
+        default :
+            break;
+    }
 
     timer.start();
 }

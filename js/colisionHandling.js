@@ -126,29 +126,14 @@ function laserHindernis(lz, hindernis){
 }
 
 function laserKristall(lz){
-    spiegelSprs[0].frameName = 'ursprung';
     lz.body.velocity.set(0);
     var f = function(){
         console.log('gewonnen');
-        //nächte level laden
-        if (level == 1) {
-            entferneLevel();
-            ladeLevel2();
-            popupLevel2();
-            level++;
-        } else if (level == 2) {
-            entferneLevel();
-            ladeLevel3();
-            popupLevel3();
-            level++;
-        } else if (level == 3) {
-            entferneLevel();
-            ladeLevel4();
-            popupLevel4();
-            level++;
-        } else if (level == 4) {
-            entferneLevel();
+        if (level == 4) {
             popupEnde();
+        }else{
+            popupNext();
+            level++;
         }
     }
     timer.stop();

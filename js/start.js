@@ -58,7 +58,7 @@ function create(){
     ladeLevel1();
     erzeugeHund();
     erzeugeLaserZeichner();
-    popupLevel1();
+    popupStart();
 
     var zeitTextstyle = { font: "35px Arial", fill: "#ffffff", align: "center" };
     zeitText = game.add.text(500,20,startZeit+' s',zeitTextstyle);
@@ -76,27 +76,6 @@ function create(){
     zeigeText(toastUndZeit);
 }
 
-function gameOver(){
-    entferneLevel();
-    switch (level){
-        case 1:
-            ladeLevel1();
-            break;
-        case 2:
-            ladeLevel2();
-            break;
-        case 3:
-            ladeLevel3();
-            break;
-        case 4:
-            ladeLevel4();
-            break;
-        default :
-            break;
-    }
-    popupRestart();
-}
-
 function update(){
     //zeichne Laser
     zeichneLaser();
@@ -112,7 +91,7 @@ function update(){
         toastZeit = Math.round(startZeit-timer.seconds);
         zeitText.setText(toastZeit+' s');
         if(toastZeit<=0){
-            gameOver();
+            popupRestart();
         }
     game.physics.arcade.collide(dog, spiegelSprs, hundSpiegel);
     game.physics.arcade.collide(dog, hindernis,hundHindernis);
