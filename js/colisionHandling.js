@@ -11,6 +11,10 @@ var untenLinks = -90;
 var linksOben = 0;
 
 function hundSpiegel(hund,sp){
+    if(!checkSpiegel){
+        checkSpiegel = true;
+        zeigeText(spiegelDrehbar);
+    }
     numAktuellesSpiegel = spiegelSprs.indexOf(sp);
     if(!sp.body.immovable){
         starteGraphicsNeu();
@@ -19,6 +23,10 @@ function hundSpiegel(hund,sp){
 }
 
 function hundHindernis(hund,hi){
+    if(!checkHindernis){
+        checkHindernis = true;
+        zeigeText(hindernisText);
+    }
     numAktuellesHindernis = hindernis.indexOf(hi);
     if(!hi.body.immovable){
         starteGraphicsNeu();
@@ -26,19 +34,23 @@ function hundHindernis(hund,hi){
 }
 
 function hundToast(h,t){
+    var x = t.x;
+    var y = t.y;
     t.kill();
-    console.log(t.x);
-    // TODO Animation Toast
-    game.add.tween(t).to( {alpha: 1 }, 2000, 'Linear', true);
-    t.kill();
-    var verschwinde = function(t){
-        game.add.tween(t).to( {alpha: 0 }, 2000, 'Linear', true);
+
+    // Toast-Animation
+    var fakeToast = game.add.sprite(x,y,'toast');
+    fakeToast.alpha = 0;
+    fakeToast.anchor.set(0.5);
+    game.add.tween(fakeToast).to( {alpha: 1 }, 2000, 'Linear', true);
+    var verschwinde = function(fakeToast){
+        game.add.tween(fakeToast).to( {alpha: 0 }, 2000, 'Linear', true);
     }
-    game.time.events.add(2000,verschwinde,this,t);
-    var entferne = function(t){
-        t.kill();
+    game.time.events.add(2000,verschwinde,this,fakeToast);
+    var entferne = function(fakeToast){
+        fakeToast.kill();
     }
-    game.time.events.add(4000,entferne,this,t);
+    game.time.events.add(4000,entferne,this,fakeToast);
 
     zeichne = true;
     startZeit = toastZeit+game.rnd.integerInRange(15,20);
@@ -113,28 +125,41 @@ function laserHindernis(lz, hindernis){
     lz.body.velocity.set(0);
 }
 
-function laserKristall(lz, kristall){
+function laserKristall(lz){
+    spiegelSprs[0].frameName = 'ursprung';
     lz.body.velocity.set(0);
-    //TODO Kristall Animation
-    console.log('gewonnen');
-    //nächte level laden
-    if(level == 1){
-        entferneLevel();
-        ladeLevel2();
-        popupLevel2();
-        level++;
-    }else if(level == 2){
-        entferneLevel();
-        ladeLevel3();
-        popupLevel3();
-        level++;
-    }else if(level == 3){
-        entferneLevel();
-        ladeLevel4();
-        popupLevel4();
-        level++;
-    }else if(level == 4){
-        entferneLevel();
-        popupEnde();
+    var f = function(){
+        console.log('gewonnen');
+        //nächte level laden
+        if (level == 1) {
+            entferneLevel();
+            ladeLevel2();
+            popupLevel2();
+            level++;
+        } else if (level == 2) {
+            entferneLevel();
+            ladeLevel3();
+            popupLevel3();
+            level++;
+        } else if (level == 3) {
+            entferneLevel();
+            ladeLevel4();
+            popupLevel4();
+            level++;
+        } else if (level == 4) {
+            entferneLevel();
+            popupEnde();
+        }
     }
+    timer.stop();
+    kristall.visibel = false;
+    //Kristall-Animation
+    FakeKristall = game.add.sprite(kristall.x,kristall.y,'leuchtKristall');
+    game.physics.enable(FakeKristall, Phaser.Physics.ARCADE);
+    FakeKristall.body.immovable = true;
+    FakeKristall.anchor.set(0.45);
+    FakeKristall.scale.set(0.5);
+    FakeKristall.animations.add('strahlen',[0,1,2,3],7,true);
+    FakeKristall.play('strahlen');
+    game.time.events.add(2000,f,this);
 }

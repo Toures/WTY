@@ -33,24 +33,19 @@ var toastZeit;
 var zeitText;
 
 function preload(){
-    //TODO Animation für Hund
-    game.load.image('hund','assets/hund.png');
-    /*
-    game.load.image('left','assets/hund.png');
-    game.load.image('right','assets/hund.png');
-    game.load.image('up','assets/hund.png');
-    game.load.image('down','assets/hund.png');
-    */
+    game.load.spritesheet('hund','assets/Hund/links.png',64,64);//TODO alle Frames in einem Bild
+    game.load.spritesheet('kristall','assets/Kristall.png',64,64);
+    game.load.spritesheet('leuchtKristall','assets/Leuchtkristall.png',64,64);
 
     game.load.image('hintergrund','assets/crappyStarfield.png');
     game.load.image('spiegel','assets/spiegel.png');
     game.load.image('buttonLinks','assets/buttonLinks.png');
     game.load.image('buttonRechts','assets/buttonRechts.png');
     game.load.image('toast','assets/Toast1.png');
-    game.load.image('kristall','assets/kristall.png');
     game.load.image('ursprung','assets/Satellite.png');
     game.load.image('hindernis','assets/Block5.png');
     game.load.image('start','assets/Start.png');
+    game.load.image('nextLevel','assets/nextLevel.png');
 
 }
 
@@ -65,12 +60,7 @@ function create(){
     erzeugeLaserZeichner();
     popupLevel1();
 
-    var text = "- phaser -\n with a sprinkle of \n pixi dust.";
-    var buttonTextstyle = { font: "65px Arial", fill: "#ffffff", align: "center" };
     var zeitTextstyle = { font: "35px Arial", fill: "#ffffff", align: "center" };
-    var beschreibungTextstyle = { font: "65px Arial", fill: "#ffffff", align: "center" };
-    //var t = game.add.text(x, y, text, style);
-
     zeitText = game.add.text(500,20,startZeit+' s',zeitTextstyle);
     timer = game.time.create(true);
 
@@ -83,6 +73,7 @@ function create(){
         a: game.input.keyboard.addKey(Phaser.Keyboard.A),
         s: game.input.keyboard.addKey(Phaser.Keyboard.S)
     }
+    zeigeText(toastUndZeit);
 }
 
 function gameOver(){
@@ -107,7 +98,6 @@ function gameOver(){
 }
 
 function update(){
-    console.log(laserZeichner.body.velocity.y);
     //zeichne Laser
     zeichneLaser();
 
@@ -121,10 +111,9 @@ function update(){
         //Zeit kontrolle
         toastZeit = Math.round(startZeit-timer.seconds);
         zeitText.setText(toastZeit+' s');
-        if(toastZeit<0){
+        if(toastZeit<=0){
             gameOver();
         }
-    }
     game.physics.arcade.collide(dog, spiegelSprs, hundSpiegel);
     game.physics.arcade.collide(dog, hindernis,hundHindernis);
     game.physics.arcade.collide(dog, ursprung);
@@ -138,14 +127,15 @@ function update(){
     game.physics.arcade.collide(spiegelSprs, ursprung);
     game.physics.arcade.collide(hindernis, kristall);
     game.physics.arcade.collide(hindernis, ursprung);
+    }
 
 }
 
 function render() {
-    //game.debug.body(dog);
+    game.debug.body(dog);
     //game.debug.body(kristall);
     //game.debug.body(ursprung);
-    //game.debug.body(toast);
+    game.debug.body(toast[0]);
     game.debug.body(spiegelSprs[2]);
     //game.debug.body(hindernis[0]);
     game.debug.body(laserZeichner);

@@ -15,7 +15,8 @@ function erzeugeKristall1(){
     kristall.body.immovable = true;
     kristall.anchor.set(0.45);
     kristall.scale.set(0.5);
-    kristall.body.setSize(60,100);
+    kristall.animations.add('strahlen',[0,1,2,3],7,true);
+    kristall.play('strahlen');
 }
 
 function erzeugeUrsprung1(){
@@ -39,15 +40,12 @@ function erzeugeHund(){
     dog =  game.add.sprite(500,500,'hund');
     game.physics.enable(dog, Phaser.Physics.ARCADE);
     dog.body.collideWorldBounds = true;
-    dog.body.setSize(264,464);
-    dog.scale.set(0.1);
-    /*
-    dog.animations.add('left', [], 64, true);
-    dog.animations.add('right', [], 64, true);
-    dog.animations.add('up', [], 64, true);
-    dog.animations.add('down', [], 64, true);
-     */
-    dog.anchor.setTo(0.3,0.4);
+    dog.body.setSize(64,50);
+    dog.animations.add('left', [0,1,2,3], 10, false);
+    dog.animations.add('right', [4,5,6,7], 10, false);
+    dog.animations.add('up', [8,9,10,11], 10, false);
+    dog.animations.add('down', [12,13,14,15], 10, false);
+    dog.anchor.setTo(0.5,0.5);
 
     //game.camera.follow(dog);
 }

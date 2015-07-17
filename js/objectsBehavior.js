@@ -67,20 +67,20 @@ function controlDog() {
     //bewegung
     if(keys.up.isDown) {
         dog.body.velocity.y  = -dogVelocity;
-        //dog.play('up');
+        dog.play('up');
         console.log(numAktuellesSpiegel);
         spiegel[numAktuellesSpiegel].versteckeButtons();
     } else if(keys.down.isDown ) {
         dog.body.velocity.y = dogVelocity;
-        //dog.play('down');
+        dog.play('down');
         spiegel[numAktuellesSpiegel].versteckeButtons();
     } else if(keys.left.isDown) {
         dog.body.velocity.x = -dogVelocity;
-        //dog.play('left');
+        dog.play('left');
         spiegel[numAktuellesSpiegel].versteckeButtons();
     } else if(keys.right.isDown ) {
         dog.body.velocity.x = dogVelocity;
-        //dog.play('right');
+        dog.play('right');
         spiegel[numAktuellesSpiegel].versteckeButtons();
     }
 }
