@@ -78,6 +78,24 @@ function erzeugeHindernis(h){
     }
 }
 
+//
+function erzeugeGlas(h){
+    for(i in h){
+        console.log(hindernis);
+        if(h[i][2]){//bewegbar
+            hindernis[i] = game.add.sprite(h[i][0],h[i][1],'glas1');
+            game.physics.enable(hindernis[i], Phaser.Physics.ARCADE);
+        }else{
+            hindernis[i] = game.add.sprite(h[i][0],h[i][1],'glas2');
+            game.physics.enable(hindernis[i], Phaser.Physics.ARCADE);
+            hindernis[i].body.immovable = true;
+        }
+        hindernis[i].anchor.set(0.5);
+        hindernis[i].angle = h[i][3];
+        hindernis[i].body.collideWorldBounds = true;
+    }
+}
+
 //erzeugeToast(x,y,sichtbar)
 function erzeugeToast(t){
     for(i in t){

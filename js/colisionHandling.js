@@ -121,6 +121,16 @@ function laserHindernis(lz, hindernis){
     lz.body.velocity.set(0);
 }
 
+function laserGlas(lz, glas){
+    //Passiert nichts
+}
+
+function hundGlas(hund,glas){
+    if(!hi.body.immovable){
+        starteGraphicsNeu();
+    }
+}
+
 function laserKristall(lz){
     lz.body.velocity.set(0);
     var f = function(){
