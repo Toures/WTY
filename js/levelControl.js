@@ -2,14 +2,29 @@
  * Created by Ping on 16.07.15.
  */
 
+var s = [[355,255,true,true,0],
+    [550,200,false,true,0],
+    [100,200,true,true,0],
+    [530,398,true,true,0]];
+
+var h = [
+    [700,400,true,0],
+    [455,200,false,50],
+    [500,330,true,0]
+];
+
+var t = [
+    [600,200,true]
+];
+
 function ladeLevel1(){
     startZeit = 30;
     setlaserUrsprung(0,laserVelocity);
     erzeugeUrsprung(100,80);
     erzeugeKristall(300,200);
-    erzeugeToast();
-    erzeugeHindernis();
-    erzeugeSpiegel();
+    erzeugeToast(t);
+    erzeugeHindernis(h);
+    erzeugeSpiegel(s);
 }
 
 function ladeLevel2(){
@@ -17,10 +32,10 @@ function ladeLevel2(){
     //TODO
     setlaserUrsprung(0,laserVelocity);
     erzeugeUrsprung(100,80);
-    erzeugeKristall();
-    erzeugeToast();
-    erzeugeHindernis();
-    erzeugeSpiegel();
+    erzeugeKristall(300,200);
+    erzeugeToast(t);
+    erzeugeHindernis(h);
+    erzeugeSpiegel(s);
 }
 
 function ladeLevel3(){
@@ -28,10 +43,10 @@ function ladeLevel3(){
     //TODO
     setlaserUrsprung(0,laserVelocity);
     erzeugeUrsprung(100,80);
-    erzeugeKristall();
-    erzeugeToast();
-    erzeugeHindernis();
-    erzeugeSpiegel();
+    erzeugeKristall(300,200);
+    erzeugeToast(t);
+    erzeugeHindernis(h);
+    erzeugeSpiegel(s);
 }
 
 function ladeLevel4(){
@@ -39,10 +54,10 @@ function ladeLevel4(){
     //TODO
     setlaserUrsprung(0,laserVelocity);
     erzeugeUrsprung(100,80);
-    erzeugeKristall();
-    erzeugeToast();
-    erzeugeHindernis();
-    erzeugeSpiegel();
+    erzeugeKristall(300,200);
+    erzeugeToast(t);
+    erzeugeHindernis(h);
+    erzeugeSpiegel(s);
 }
 
 function entferneLevel(){

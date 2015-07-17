@@ -33,19 +33,25 @@ var toastZeit;
 var zeitText;
 
 function preload(){
-    game.load.spritesheet('hund','assets/Hund/links.png',64,64);//TODO alle Frames in einem Bild
+    game.load.spritesheet('hund','assets/hundBewegung.png',64,64);//TODO alle Frames in einem Bild
     game.load.spritesheet('kristall','assets/Kristall.png',64,64);
     game.load.spritesheet('leuchtKristall','assets/Leuchtkristall.png',64,64);
+    game.load.spritesheet('startBild','assets/Start2.png',800,600);
+    game.load.spritesheet('next','assets/hundNextLevel.png',800,600);//hund
+    game.load.spritesheet('restry','assets/Start2.png',800,600);//hund
 
-    game.load.image('hintergrund','assets/crappyStarfield.png');
-    game.load.image('spiegel','assets/spiegel.png');
-    game.load.image('buttonLinks','assets/buttonLinks.png');
-    game.load.image('buttonRechts','assets/buttonRechts.png');
+    game.load.image('hintergrund','assets/Boden2.png');
+    game.load.image('spiegel','assets/Spiegelrund.png');
+    game.load.image('buttonLinks','assets/Pfeil2.png');
+    game.load.image('buttonRechts','assets/Pfeil1.png');
     game.load.image('toast','assets/Toast1.png');
     game.load.image('ursprung','assets/Satellite.png');
-    game.load.image('hindernis','assets/Block5.png');
-    game.load.image('start','assets/Start.png');
-    game.load.image('nextLevel','assets/nextLevel.png');
+    game.load.image('hindernis','assets/Block2.png');
+    game.load.image('metallblock','assets/Metallblock.png');
+    game.load.image('nextLevel','assets/nextLevel.png');//button
+    game.load.image('startButton','assets/Start.png');//button
+    game.load.image('popup','assets/popup.png');
+
 
 }
 

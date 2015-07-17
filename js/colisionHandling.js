@@ -24,10 +24,6 @@ function hundSpiegel(hund,sp){
 }
 
 function hundHindernis(hund,hi){
-    if(!checkHindernis){
-        checkHindernis = true;
-        zeigeText(hindernisText);
-    }
     if(!hi.body.immovable){
         starteGraphicsNeu();
     }

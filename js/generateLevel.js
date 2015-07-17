@@ -50,39 +50,48 @@ function erzeugeHund(){
     //game.camera.follow(dog);
 }
 
+//s[i] = [x,y,drehbar,bewegbar,Winkel]
 function erzeugeSpiegel(s){
-    spiegelSprs[0] = game.add.sprite(355,255,'spiegel');
-    spiegelSprs[1] = game.add.sprite(550,200,'spiegel');
-    spiegelSprs[2] = game.add.sprite(100,200,'spiegel');
-    spiegelSprs[3] = game.add.sprite(530,398,'spiegel');
-
-    spiegelSprs[2].angle += 90;
-
-
-    for(i in spiegelSprs){
-        spiegelSprs[i].scale.set(0.2);
+    for(i in s){
+        spiegelSprs[i] = game.add.sprite(s[i][0],s[i][1],'spiegel');
         spiegelSprs[i].anchor.set(0.5);
-        if(i == 2)
-            spiegel[i] = new Spiegel(spiegelSprs[i],false, true);
-        else
-            spiegel[i] = new Spiegel(spiegelSprs[i],true, true);
+        spiegel[i] = new Spiegel(spiegelSprs[i],s[i][2],s[i][3]);
+        spiegelSprs[i].angle = s[i][4];
     }
-
 }
 
+//erzeugeHindernis(x,y,bewegbar,Winkel)
 function erzeugeHindernis(h){
-    hindernis[2] = game.add.sprite(500,330,'hindernis');
-    hindernis[1] = game.add.sprite(455,200,'hindernis');
-    hindernis[0] = game.add.sprite(700,400,'hindernis');
-
-    for(i in hindernis){
+    for(i in h){
+        console.log(hindernis);
+        if(h[i][2]){//bewegbar
+            hindernis[i] = game.add.sprite(h[i][0],h[i][1],'hindernis');
+            game.physics.enable(hindernis[i], Phaser.Physics.ARCADE);
+        }else{
+            hindernis[i] = game.add.sprite(h[i][0],h[i][1],'metallblock');
+            game.physics.enable(hindernis[i], Phaser.Physics.ARCADE);
+            hindernis[i].body.immovable = true;
+        }
         hindernis[i].anchor.set(0.5);
-        game.physics.enable(hindernis[i], Phaser.Physics.ARCADE);
+        hindernis[i].angle = h[i][3];
         hindernis[i].body.collideWorldBounds = true;
     }
 }
 
+//erzeugeToast(x,y,sichtbar)
 function erzeugeToast(t){
+    for(i in t){
+        toast[i] = game.add.sprite(t[i][0],t[i][1],'toast');
+        game.physics.enable(toast[i], Phaser.Physics.ARCADE);
+        toast[i].body.immovable = true;;
+        toast[i].anchor.set(0.5);
+        if(t[2]){
+            toast[i].alpha = 1;
+        }else{
+            toast[i].alpha = 0;
+        }
+    }
+    /*
     toast[0] = game.add.sprite(600,200,'toast');
     for(i in toast){
         game.physics.enable(toast[i], Phaser.Physics.ARCADE);
@@ -90,4 +99,5 @@ function erzeugeToast(t){
         toast[i].anchor.set(0.5);
         toast[i].alpha = 0;
     }
+    */
 }
