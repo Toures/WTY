@@ -46,7 +46,6 @@ function ladeLevel4(){
 }
 
 function entferneLevel(){
-    //hintergrund.kill();
     ursprung.kill();
     kristall.kill();
     zeichne = false;
